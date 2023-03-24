@@ -1,5 +1,5 @@
-import puppeteer, {executablePath} from 'puppeteer';
-
+import {PuppeteerImage} from './PuppeteerImage';
+import puppeteer from 'puppeteer';
 require('dotenv').config();
 
 const pathToChromeExe = process.env.PATH_TO_CHROME_EXE;
@@ -13,17 +13,10 @@ const sites = [
     { url: 'https://twitter.com', filename: './images/twitter2.png' },
 ];
 
-async function takeScreenshot(url: string, filename: string) {
-    const browser = await puppeteer.launch({executablePath: pathToChromeExe, headless: false, defaultViewport: {width: width, height: height}});
-    const page = await browser.newPage();
-    await page.goto(url);
-    await page.screenshot({ path: filename });
-    await browser.close();
-}
-
 async function run() {
     for (const site of sites) {
-        await takeScreenshot(site.url, site.filename);
+        let puppeteerImage = new PuppeteerImage(await puppeteer.launch({executablePath: pathToChromeExe, headless: true, defaultViewport: {width: width, height: height}}));
+        await puppeteerImage.getScreenshot(site.url, site.filename);
     }
     process.exit();
 }
