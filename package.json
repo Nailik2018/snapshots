@@ -1,0 +1,21 @@
+{
+  "name": "snapshots",
+  "version": "1.0.0",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "puppeteer": "^19.8.0"
+  },
+  "main": "hello.js",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "start": "ts-node test.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
