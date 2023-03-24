@@ -1,8 +1,9 @@
 import {Browser} from "puppeteer";
 
-class PuppeteerImage {
+abstract class BaseSnapshot{
 
     private _browser: Browser;
+
     constructor(browser: any) {
         this._browser = browser;
     }
@@ -15,7 +16,7 @@ class PuppeteerImage {
         this._browser = value;
     }
 
-    async getScreenshot(url: string, filename: string) {
+    public async getScreenshot(url: string, filename: string){
         const page = await this._browser.newPage();
         await page.goto(url, {waitUntil: 'networkidle2'}); // best result for loaded site
         await page.screenshot({ path: filename });
@@ -23,4 +24,4 @@ class PuppeteerImage {
     }
 }
 
-export {PuppeteerImage};
+export {BaseSnapshot}
